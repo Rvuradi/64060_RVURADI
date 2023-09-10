@@ -1,0 +1,61 @@
+---
+title: "FML-AssignmentR1"
+output: html_document
+date: "2023-09-10"
+---
+
+#DataSource: https://github.com/davidcaughlin/R-Tutorial-Data-Files
+
+```{r}
+#install.packages("readr")
+library(readr) 
+setwd("C:\\Users\\user\\Desktop\\Masters\\Assignments\\Rohit FML")
+read.csv(file="Survival.csv",header=TRUE,sep=",")
+Dataframe=read.csv(file="Survival.csv",header=TRUE,sep=",") 
+Dataframe
+```
+
+#descriptive statistics for a quantitative variables.
+```{r}
+summary(Dataframe$Pay_hourly)
+mean(Dataframe$Pay_hourly)
+median(Dataframe$Pay_hourly)
+quantile(Dataframe$Pay_hourly)
+sd(Dataframe$Pay_hourly)
+sum(Dataframe$Pay_hourly)
+var(Dataframe$Pay_hourly)
+range(Dataframe$Pay_hourly)
+```
+
+#descriptive statistics for a Categorical variables.
+```{r}
+#install.packages("modeest")
+library(modeest)
+prop.table(table(Dataframe$Race))
+mfv(Dataframe$Race)
+
+```
+#Transforming a variable
+```{r}
+Dataframe$Pay_hourly
+log10(Dataframe$Pay_hourly)
+
+```
+#bar chart for 
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+
+ggplot(Dataframe, aes(x = Pay_sat)) + geom_bar(stat = "count") + stat_count(geom = "text", aes(label = after_stat(count)), na.rm = TRUE)
+
+```
+
+
+
+```{r}
+library(ggplot2) # loaded ggplot2 library to plot a scatterplot
+
+ggplot(Dataframe, aes(x = Pay_sat, y = Pay_hourly, color = Race)) + geom_point()
+
+
+```
